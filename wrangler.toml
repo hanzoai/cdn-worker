@@ -1,0 +1,16 @@
+name = "cdn-worker"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+
+# Serve assets from all org CDN domains
+routes = [
+  { pattern = "cdn.hanzo.ai/*", zone_name = "hanzo.ai" },
+  { pattern = "cdn.lux.network/*", zone_name = "lux.network" },
+  { pattern = "cdn.zoo.ngo/*", zone_name = "zoo.ngo" },
+  { pattern = "cdn.pars.network/*", zone_name = "pars.network" },
+]
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "CDN_BUCKET"
+bucket_name = "pub"
