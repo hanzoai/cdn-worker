@@ -50,7 +50,7 @@ find "$LOCAL_DIR" -type f | while read -r file; do
     *.avif) CT="image/avif" ;;
   esac
 
-  npx wrangler r2 object put "pub/$R2_KEY" --file="$file" --content-type="$CT" 2>/dev/null && \
+  npx wrangler r2 object put "pub/$R2_KEY" --file="$file" --content-type="$CT" --remote 2>/dev/null && \
     echo "[$COUNT/$TOTAL] $R2_KEY" || \
     echo "[$COUNT/$TOTAL] FAILED: $R2_KEY"
 done
