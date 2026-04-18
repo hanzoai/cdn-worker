@@ -2,13 +2,13 @@
  * CDN Worker — serves static assets from R2 with CF edge caching.
  *
  * Routes:
- *   cdn.hanzo.ai/*           → R2 pub/hanzo/*
- *   cdn.lux.network/*       → R2 pub/lux/*
- *   cdn.zoo.ngo/*           → R2 pub/zoo/*
- *   cdn.pars.network/*      → R2 pub/pars/*
- *   cdn./*      → R2 pub/liquidity/*
- *   cdn.dev./*  → R2 pub/liquidity/*
- *   cdn./*      → R2 pub/liquidity/*
+ *   cdn.hanzo.ai/*                → R2 pub/hanzo/*
+ *   cdn.lux.network/*            → R2 pub/lux/*
+ *   cdn.zoo.ngo/*                → R2 pub/zoo/*
+ *   cdn.pars.network/*           → R2 pub/pars/*
+ *   cdn.main./*      → R2 pub/liquidity-main/*
+ *   cdn.test./*      → R2 pub/liquidity-test/*
+ *   cdn.dev./*       → R2 pub/liquidity-dev/*
  */
 
 const DOMAIN_PREFIX = {
@@ -16,9 +16,9 @@ const DOMAIN_PREFIX = {
   'cdn.lux.network': 'lux',
   'cdn.zoo.ngo': 'zoo',
   'cdn.pars.network': 'pars',
-  'cdn.': 'liquidity',
-  'cdn.dev.': 'liquidity',
-  'cdn.': 'liquidity',
+  'cdn.main.': 'liquidity-main',
+  'cdn.test.': 'liquidity-test',
+  'cdn.dev.': 'liquidity-dev',
 };
 
 const MIME_TYPES = {
