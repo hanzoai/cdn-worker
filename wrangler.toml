@@ -8,6 +8,9 @@ routes = [
   { pattern = "cdn.lux.network/*", zone_name = "lux.network" },
   { pattern = "cdn.zoo.ngo/*", zone_name = "zoo.ngo" },
   { pattern = "cdn.pars.network/*", zone_name = "pars.network" },
+  { pattern = "cdn./*", zone_name = "" },
+  { pattern = "cdn.dev./*", zone_name = "" },
+  { pattern = "cdn./*", zone_name = "" },
 ]
 
 # R2 bucket binding
