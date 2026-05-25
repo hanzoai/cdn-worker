@@ -1,25 +1,29 @@
 /**
  * CDN Worker — serves static assets from R2 with CF edge caching.
  *
- * Routes:
+ * Routes (canonical Hanzo-org brands):
  *   cdn.hanzo.ai/*                → R2 pub/hanzo/*
  *   cdn.lux.network/*            → R2 pub/lux/*
  *   cdn.zoo.ngo/*                → R2 pub/zoo/*
  *   cdn.pars.network/*           → R2 pub/pars/*
- *   cdn.main./*      → R2 pub/liquidity-main/*
- *   cdn.test./*      → R2 pub/liquidity-test/*
- *   cdn.dev./*       → R2 pub/liquidity-dev/*
+ *
+ * Downstream tenants extend via DOMAIN_PREFIX_OVERRIDES (JSON env var
+ * configured in wrangler.toml of the deploying tenant).
  */
 
-const DOMAIN_PREFIX = {
+const BASE_DOMAIN_PREFIX = {
   'cdn.hanzo.ai': 'hanzo',
   'cdn.lux.network': 'lux',
   'cdn.zoo.ngo': 'zoo',
   'cdn.pars.network': 'pars',
-  'cdn.main.': 'liquidity-main',
-  'cdn.test.': 'liquidity-test',
-  'cdn.dev.': 'liquidity-dev',
 };
+const DOMAIN_PREFIX = (() => {
+  try {
+    return { ...BASE_DOMAIN_PREFIX, ...(typeof DOMAIN_PREFIX_OVERRIDES !== 'undefined' ? JSON.parse(DOMAIN_PREFIX_OVERRIDES) : {}) };
+  } catch {
+    return BASE_DOMAIN_PREFIX;
+  }
+})();
 
 const MIME_TYPES = {
   '.svg': 'image/svg+xml',

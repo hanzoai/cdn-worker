@@ -2,15 +2,14 @@ name = "cdn-worker"
 main = "src/worker.js"
 compatibility_date = "2024-01-01"
 
-# Serve assets from all org CDN domains
+# Serve assets from Hanzo-org CDN domains.
+# Downstream tenants deploy their own wrangler config from their own CF
+# account with the same worker code and DOMAIN_PREFIX_OVERRIDES.
 routes = [
   { pattern = "cdn.hanzo.ai/*", zone_name = "hanzo.ai" },
   { pattern = "cdn.lux.network/*", zone_name = "lux.network" },
   { pattern = "cdn.zoo.ngo/*", zone_name = "zoo.ngo" },
   { pattern = "cdn.pars.network/*", zone_name = "pars.network" },
-  # Liquidity domains — deploy from liquidity CF account
-  # { pattern = "cdn./*", zone_name = "" },
-  # { pattern = "cdn.dev./*", zone_name = "" },
 ]
 
 # R2 bucket binding
