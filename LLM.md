@@ -1,4 +1,4 @@
-# LLM.md - Hanzo Cdn Worker
+# Hanzo Cdn Worker
 
 ## Overview
 Hanzo cdn-worker service
